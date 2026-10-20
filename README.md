@@ -5,6 +5,7 @@ Explore campus events, manage registrations, and review participation from an
 administrator dashboard. The web version uses SQLite; the separate console
 version is not included in this folder.
 
+
 ## Run locally on Windows
 
 Requires Python 3.10 or newer.
@@ -38,6 +39,15 @@ The original classroom sign-in flow uses a **User ID only**:
 You can also create a student account from **Create account**. This remains a
 local classroom demonstration; password authentication was not added as part
 of the visual redesign.
+
+## Live Demo
+
+🌐 [Open Campus Event Management](https://campus-event-management-web.onrender.com)
+
+A responsive Flask and SQLite web application deployed on Render.
+Browse campus events, register for activities, and manage registrations.
+
+Note: The free demo may take about a minute to load after inactivity.
 
 ## Features
 
