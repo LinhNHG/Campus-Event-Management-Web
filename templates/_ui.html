@@ -1,0 +1,13 @@
+{% macro icon(name, size=20) -%}<svg width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-{{ name }}"/></svg>{%- endmacro %}
+{% macro metric(label, value, symbol, note='') -%}<div class="metric"><div class="metric-top"><span>{{ label }}</span><span class="icon-tile">{{ icon(symbol) }}</span></div><strong>{{ value }}</strong>{% if note %}<small>{{ note }}</small>{% endif %}</div>{%- endmacro %}
+{% macro event_card(event, index=0, mine=false) -%}
+<article class="event-card">
+ <div class="event-art art-{{ index % 4 }}"><span class="art-grid"></span><span class="art-orbit"></span><span class="art-icon">{{ icon('calendar',48) }}</span><span class="art-label">CAMPUS / EVENTS</span></div>
+ <div class="event-body"><div class="event-top"><span class="badge {{ 'badge-green' if event['date'] >= today else 'badge-gray' }}">{{ 'Upcoming' if event['date'] > today else ('Today' if event['date'] == today else 'Past event') }}</span><span class="event-id">#{{ event['event_id'] }}</span></div>
+ <h3><a href="{{ url_for('event_details', event_id=event['event_id']) }}">{{ event['name'] }}</a></h3>
+ <p class="meta">{{ icon('calendar',16) }} {{ event['date'] }}</p><p class="meta">{{ icon('pin',16) }} {{ event['location'] }}</p>
+ {% if not mine %}<p class="meta">{{ icon('users',16) }} Capacity: {{ event['capacity'] }} attendees</p>{% endif %}
+ </div><div class="event-footer"><a class="btn btn-outline" href="{{ url_for('event_details',event_id=event['event_id']) }}">View details {{ icon('arrow',16) }}</a>
+ {% if mine %}<a class="text-danger small-link" data-confirm="Cancel your registration for this event?" href="{{ url_for('cancel_registration_page',event_id=event['event_id']) }}">Cancel registration</a>{% else %}<a class="btn btn-primary" href="{{ url_for('register_page',event_id=event['event_id']) }}">Register</a>{% endif %}</div>
+ {% if session.get('role') == 'Admin' and not mine %}<div class="event-admin"><a href="{{ url_for('edit_event_page',event_id=event['event_id']) }}">{{ icon('edit',15) }} Edit event</a><a class="text-danger" data-confirm="Delete this event? This cannot be undone." href="{{ url_for('delete_event_page',event_id=event['event_id']) }}">{{ icon('trash',15) }} Delete</a></div>{% endif %}
+</article>{%- endmacro %}
