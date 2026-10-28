@@ -22,6 +22,17 @@ This repository contains the web version. The separate console
 application is available in
 [Campus-Event-Management](https://github.com/LinhNHG/Campus-Event-Management).
 
+## My Contribution
+
+The original Campus Event Management application was developed
+as a team coursework project.
+
+I independently extended the team project into the web version
+presented in this repository, using Flask and SQLite with a
+responsive HTML, CSS, and JavaScript interface.
+
+The web version builds on the original team's work.
+
 ## Screenshots
 
 ### Application Overview
